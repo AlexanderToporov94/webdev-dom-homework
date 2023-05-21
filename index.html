@@ -215,7 +215,11 @@
         })
 
         .catch((error) => {
-          alert('Кажется, у вас сломался интернет, попробуйте позже');
+          if (error.message === 'Сервер упал') {
+            alert('Сервер сломался, попробуйте позже');
+          } else {
+            alert('Кажется, у вас сломался интернет, попробуйте позже');
+          }
           inputName.value = shortName;
           textAreaComment.value = shortComment;
         })
