@@ -1,4 +1,5 @@
 import {userComments , getApi} from "./script-getapi";
+import { renderComments } from "./render";
 const buttonNewComment = document.querySelector('.add-form-button');
 const comment = document.querySelector('.comment');
 const boxComments = document.querySelector('.comments');
@@ -9,7 +10,12 @@ const formBox = document.querySelector('.add-form');
 let now = new Date();
 
 
-// let userComments = [];
+let userComments = [];
+
+export {userComments};
+export {comment};
+export {boxCommentsTexts};
+export {boxComments};
 
 // function getApi() {
 //   return fetch("https://webdev-hw-api.vercel.app/api/v1/alex-toporov/comments", {
@@ -61,6 +67,8 @@ const initLikeClick = () => {
   }
 }
 
+export {initLikeClick};
+
     // Первый вариан ответа на коммент
 const answerComment = () => {
   const boxCommentsTexts = document.querySelectorAll('.comment');
@@ -74,32 +82,34 @@ const answerComment = () => {
 }
 answerComment();
 
-const renderComments = () => {
-  const commentHtml = userComments.map((comment,index) => {
-    (comment.Iliked) ? Iliked = '-active-like' : Iliked = '';
-    return `<li class="comment">
-      <div class="comment-header">
-        <div class="comment-user-name">${comment.name}</div>
-        <div class="comment-date">${comment.date}</div>
-      </div>
-      <div class="comment-body">
-        <div class="comment-text">
-          ${comment.text}
-        </div>
-      </div>
-      <div class="comment-footer">
-        <div class="likes">
-          <span class="likes-counter">${comment.likes}</span>
-          <button class="like-button ${Iliked}" data-id='${index}'></button>
-        </div>
-      </div>
-    </li>`;
-  }).join('');
+export {answerComment};
 
-  boxComments.innerHTML = commentHtml;
-  initLikeClick();
-  answerComment();
-}
+// const renderComments = () => {
+//   const commentHtml = userComments.map((comment,index) => {
+//     (comment.Iliked) ? Iliked = '-active-like' : Iliked = '';
+//     return `<li class="comment">
+//       <div class="comment-header">
+//         <div class="comment-user-name">${comment.name}</div>
+//         <div class="comment-date">${comment.date}</div>
+//       </div>
+//       <div class="comment-body">
+//         <div class="comment-text">
+//           ${comment.text}
+//         </div>
+//       </div>
+//       <div class="comment-footer">
+//         <div class="likes">
+//           <span class="likes-counter">${comment.likes}</span>
+//           <button class="like-button ${Iliked}" data-id='${index}'></button>
+//         </div>
+//       </div>
+//     </li>`;
+//   }).join('');
+
+//   boxComments.innerHTML = commentHtml;
+//   initLikeClick();
+//   answerComment();
+// }
 
 renderComments();
 
@@ -126,7 +136,7 @@ const addComment = () => {
       name: inputName.value
       .replaceAll('<', '&lt;')
       .replaceAll('<', '&gt;'),
-      forceError: true, 
+      forceError: false, 
       })
     })
 
