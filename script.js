@@ -1,5 +1,5 @@
-import {getApi, userComments, fetchPromise} from "./api";
-import { renderComments } from "./render";
+import {getApi, userComments, fetchPromise} from "./api.js";
+import { renderComments } from "./render.js";
 const buttonNewComment = document.querySelector('.add-form-button');
 const comment = document.querySelector('.comment');
 const boxComments = document.querySelector('.comments');

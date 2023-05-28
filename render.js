@@ -1,7 +1,7 @@
-import { initLikeClick } from "./script";
-import { answerComment } from "./script";
-import { userComments } from "./api";
-import { boxComments } from "./script";
+import { initLikeClick } from "./script.js";
+import { answerComment } from "./script.js";
+import { userComments } from "./api.js";
+import { boxComments } from "./script.js";
 
 
 const renderComments = () => {
