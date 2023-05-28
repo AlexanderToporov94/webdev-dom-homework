@@ -1,6 +1,6 @@
 import { initLikeClick } from "./script";
 import { answerComment } from "./script";
-import { userComments } from "./script";
+import { userComments } from "./api";
 import { boxComments } from "./script";
 
 

@@ -1,4 +1,4 @@
-import {userComments , getApi} from "./script-getapi";
+import {getApi, addComment, userComments, fetchPromise} from "./api";
 import { renderComments } from "./render";
 const buttonNewComment = document.querySelector('.add-form-button');
 const comment = document.querySelector('.comment');
@@ -8,14 +8,10 @@ const textAreaComment = document.querySelector('.add-form-text');
 const boxCommentsTexts = boxComments.querySelectorAll('.comment');
 const formBox = document.querySelector('.add-form');
 let now = new Date();
+export {buttonNewComment, comment, boxComments, inputName, textAreaComment, boxCommentsTexts, formBox, now};
 
 
-let userComments = [];
-
-export {userComments};
-export {comment};
-export {boxCommentsTexts};
-export {boxComments};
+// let userComments = [];
 
 // function getApi() {
 //   return fetch("https://webdev-hw-api.vercel.app/api/v1/alex-toporov/comments", {
@@ -42,7 +38,7 @@ export {boxComments};
 //   })
 // }
 
-// getApi();
+getApi();
 
 const addLike = (e) => {
   const comment = userComments[e.target.dataset.id];
@@ -66,10 +62,9 @@ const initLikeClick = () => {
     })
   }
 }
-
+initLikeClick();
 export {initLikeClick};
 
-    // Первый вариан ответа на коммент
 const answerComment = () => {
   const boxCommentsTexts = document.querySelectorAll('.comment');
   boxCommentsTexts.forEach((comment) => {
@@ -81,7 +76,6 @@ const answerComment = () => {
   });
 }
 answerComment();
-
 export {answerComment};
 
 // const renderComments = () => {
@@ -113,9 +107,7 @@ export {answerComment};
 
 renderComments();
 
-const addComment = () => {
-  let shortName = inputName.value;
-  let shortComment = textAreaComment.value;
+function addComment() {
   const container = document.querySelector('.container')
   formBox.classList.add('hidden');
   let loader = document.createElement('p');
@@ -123,59 +115,59 @@ const addComment = () => {
   loader.textContent = 'Комментарии загружаются...';
   container.appendChild(loader);
 
-  const fetchPromise = fetch("https://webdev-hw-api.vercel.app/api/v1/alex-toporov/comments", {
-    method: "POST",
-    body: JSON.stringify({
-      id: 1,
-      date: `${now.toLocaleString().slice(0,-3)}`,
-      likes: 0,
-      isLiked: false,
-      text: `${textAreaComment.value
-      .replaceAll('<', '&lt;')
-      .replaceAll('<', '&gt;')}`,
-      name: inputName.value
-      .replaceAll('<', '&lt;')
-      .replaceAll('<', '&gt;'),
-      forceError: false, 
-      })
-    })
+  // const fetchPromise = fetch("https://webdev-hw-api.vercel.app/api/v1/alex-toporov/comments", {
+  //   method: "POST",
+  //   body: JSON.stringify({
+  //     id: 1,
+  //     date: `${now.toLocaleString().slice(0,-3)}`,
+  //     likes: 0,
+  //     isLiked: false,
+  //     text: `${textAreaComment.value
+  //     .replaceAll('<', '&lt;')
+  //     .replaceAll('<', '&gt;')}`,
+  //     name: inputName.value
+  //     .replaceAll('<', '&lt;')
+  //     .replaceAll('<', '&gt;'),
+  //     forceError: false, 
+  //     })
+  //   })
 
-    .then((response) => {
-      if (response.status === 400) {
-        alert('Введите больше трех символов');
-        inputName.value = shortName;
-        textAreaComment.value = shortComment;
-      } else if (response.status === 500) {
-        throw new Error('Сервер упал');
-      } else {
-        return response.json();
-      }
-    })
+  //   .then((response) => {
+  //     if (response.status === 400) {
+  //       alert('Введите больше трех символов');
+  //       inputName.value = shortName;
+  //       textAreaComment.value = shortComment;
+  //     } else if (response.status === 500) {
+  //       throw new Error('Сервер упал');
+  //     } else {
+  //       return response.json();
+  //     }
+  //   })
 
-    .then((responseData) => {
-      return userComments = responseData.comments;
-    })
+  //   .then((responseData) => {
+  //     return userComments = responseData.comments;
+  //   })
 
-    .then(() => {
-      return getApi();
-      return renderComments();
-    })
+  //   .then(() => {
+  //     return getApi();
+  //     return renderComments();
+  //   })
 
-    .catch((error) => {
-      if (error.message === 'Сервер упал') {
-        alert('Сервер сломался, попробуйте позже');
-      } else {
-        alert('Кажется, у вас сломался интернет, попробуйте позже');
-      }
-      inputName.value = shortName;
-      textAreaComment.value = shortComment;
-    })
+  //   .catch((error) => {
+  //     if (error.message === 'Сервер упал') {
+  //       alert('Сервер сломался, попробуйте позже');
+  //     } else {
+  //       alert('Кажется, у вас сломался интернет, попробуйте позже');
+  //     }
+  //     inputName.value = shortName;
+  //     textAreaComment.value = shortComment;
+  //   })
 
-    .then((data) => {
-      loader.classList.add('hidden');
-      formBox.classList.remove('hidden');
-    });
-
+  //   .then((data) => {
+  //     loader.classList.add('hidden');
+  //     formBox.classList.remove('hidden');
+  //   });
+  fetchPromise();
   getApi();
   renderComments();
   answerComment();
@@ -183,8 +175,10 @@ const addComment = () => {
   textAreaComment.value = '';
 }
 
+addComment();
+
 buttonNewComment.addEventListener('click', function () {
-  let oldComments = boxComments.innerHTML;
+  // let oldComments = boxComments.innerHTML;
 
   if (inputName.value === '') {
     inputName.classList.add('error');
@@ -199,3 +193,9 @@ buttonNewComment.addEventListener('click', function () {
     textAreaComment.classList.remove('error');
   }
 });
+
+export {comment};
+export {boxCommentsTexts};
+export {boxComments};
+export {formBox};
+export {now};
