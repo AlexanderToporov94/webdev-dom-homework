@@ -1,4 +1,4 @@
-import {getApi, addComment, userComments, fetchPromise} from "./api";
+import {getApi, userComments, fetchPromise} from "./api";
 import { renderComments } from "./render";
 const buttonNewComment = document.querySelector('.add-form-button');
 const comment = document.querySelector('.comment');
@@ -193,9 +193,3 @@ buttonNewComment.addEventListener('click', function () {
     textAreaComment.classList.remove('error');
   }
 });
-
-export {comment};
-export {boxCommentsTexts};
-export {boxComments};
-export {formBox};
-export {now};
