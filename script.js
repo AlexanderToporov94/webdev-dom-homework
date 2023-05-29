@@ -7,6 +7,7 @@ const inputName = document.querySelector('.add-form-name');
 const textAreaComment = document.querySelector('.add-form-text');
 const boxCommentsTexts = boxComments.querySelectorAll('.comment');
 const formBox = document.querySelector('.add-form');
+let loader = document.createElement('p');
 let now = new Date();
 export {buttonNewComment, comment, boxComments, inputName, textAreaComment, boxCommentsTexts, formBox, now};
 
@@ -54,7 +55,7 @@ const delLike = (e) => {
     
 const initLikeClick = () => {
   const likeClickElems = document.querySelectorAll('.likes');
-  for (likeClickElem of likeClickElems) {
+  for (const likeClickElem of likeClickElems) {
     likeClickElem.addEventListener('click', (e) => {
       e.stopPropagation();
       (userComments[e.target.dataset.id].Iliked) ? delLike(e) : addLike(e);
@@ -110,7 +111,7 @@ renderComments();
 function addComment() {
   const container = document.querySelector('.container')
   formBox.classList.add('hidden');
-  let loader = document.createElement('p');
+  // let loader = document.createElement('p');
   loader.className = "loader";
   loader.textContent = 'Комментарии загружаются...';
   container.appendChild(loader);
@@ -174,6 +175,7 @@ function addComment() {
   inputName.value = '';
   textAreaComment.value = '';
 }
+export {loader};
 
 addComment();
 

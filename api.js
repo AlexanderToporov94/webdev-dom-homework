@@ -1,6 +1,8 @@
 import { renderComments } from "./render.js";
 import { formBox } from "./script.js";
 import { inputName, textAreaComment } from "./script.js";
+import { now } from "./script.js";
+import { loader } from "./script.js";
 
 let userComments = [];
 export {userComments};

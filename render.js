@@ -6,6 +6,7 @@ import { boxComments } from "./script.js";
 
 const renderComments = () => {
     const commentHtml = userComments.map((comment,index) => {
+        let Iliked = '';
         (comment.Iliked) ? Iliked = '-active-like' : Iliked = '';
         return `<li class="comment">
         <div class="comment-header">
