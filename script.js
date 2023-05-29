@@ -40,7 +40,7 @@ export {initLikeClick};
 const answerComment = () => {
   const boxCommentsTexts = document.querySelectorAll('.comment');
   boxCommentsTexts.forEach((comment) => {
-    comment.addEventListener('click', (e) => {
+    comment.addEventListener('click', () => {
       const author = comment.querySelector('.comment-header div:first-child').textContent;
       const text = comment.querySelector('.comment-text').textContent;
       textAreaComment.value = `@${author} \n\n > ${text}, `;
