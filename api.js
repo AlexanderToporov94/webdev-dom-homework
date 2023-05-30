@@ -32,6 +32,8 @@ export const getApi = () => {
   })
 }
 
+getApi();
+
 export function fetchPromise() {
   let shortName = inputName.value;
   let shortComment = textAreaComment.value;
@@ -70,8 +72,11 @@ export function fetchPromise() {
     })
 
     .then(() => {
-      getApi();
-      renderComments();
+      return getApi();
+    })
+
+    .then(() => {
+      return renderComments();
     })
 
     .catch((error) => {
