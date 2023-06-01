@@ -1,4 +1,4 @@
-import {getApi, userComments, fetchPromise} from "./api.js";
+import {gettingCommentFromApi, userComments, sendingCommentFromApi} from "./api.js";
 import { renderComments } from "./render.js";
 const buttonNewComment = document.querySelector('.add-form-button');
 const comment = document.querySelector('.comment');
@@ -57,8 +57,8 @@ function addComment() {
   loader.textContent = 'Комментарии загружаются...';
   container.appendChild(loader);
 
-  getApi();
-  fetchPromise();
+  gettingCommentFromApi();
+  sendingCommentFromApi();
   renderComments();
   answerComment();
   inputName.value = '';
@@ -66,7 +66,7 @@ function addComment() {
 }
 export {loader};
 
-getApi();
+gettingCommentFromApi();
 renderComments();
 
 buttonNewComment.addEventListener('click', function () {
@@ -79,7 +79,7 @@ buttonNewComment.addEventListener('click', function () {
     textAreaComment.classList.add('error');
     return;
   } else {
-    getApi();
+    gettingCommentFromApi();
     addComment();
     inputName.classList.remove('error');
     textAreaComment.classList.remove('error');

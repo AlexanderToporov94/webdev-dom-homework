@@ -7,7 +7,7 @@ import { loader } from "./script.js";
 let userComments = [];
 export {userComments};
 
-export const getApi = () => {
+export const gettingCommentFromApi = () => {
   return fetch("https://webdev-hw-api.vercel.app/api/v1/alex-toporov/comments", {
     method: "GET",
   })
@@ -32,9 +32,9 @@ export const getApi = () => {
   })
 }
 
-getApi();
+gettingCommentFromApi();
 
-export function fetchPromise() {
+export function sendingCommentFromApi() {
   let shortName = inputName.value;
   let shortComment = textAreaComment.value;
 
@@ -72,7 +72,7 @@ export function fetchPromise() {
     })
 
     .then(() => {
-      return getApi();
+      return gettingCommentFromApi();
     })
 
     .then(() => {
