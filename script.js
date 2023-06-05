@@ -11,7 +11,6 @@ let loader = document.createElement('p');
 let now = new Date();
 export {buttonNewComment, comment, boxComments, inputName, textAreaComment, boxCommentsTexts, formBox, now};
 
-
 const addLike = (e) => {
   const comment = userComments[e.target.dataset.id];
   comment.likes++;
@@ -51,7 +50,7 @@ export {answerComment};
 
 
 function addComment() {
-  const container = document.querySelector('.container')
+  const container = document.querySelector('.container');
   formBox.classList.add('hidden');
   loader.className = "loader";
   loader.textContent = 'Комментарии загружаются...';

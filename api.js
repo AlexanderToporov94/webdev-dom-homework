@@ -7,7 +7,7 @@ import { loader } from "./script.js";
 let userComments = [];
 export {userComments};
 
-export const gettingCommentFromApi = () => {
+export function gettingCommentFromApi() {
   return fetch("https://webdev-hw-api.vercel.app/api/v1/alex-toporov/comments", {
     method: "GET",
   })
