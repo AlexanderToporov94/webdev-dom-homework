@@ -1,5 +1,7 @@
 import {gettingCommentFromApi, userComments, sendingCommentFromApi} from "./api.js";
 import { renderComments } from "./render.js";
+import { renderLogin } from "./renderLogin.js";
+const app = document.querySelector('.container');
 const buttonNewComment = document.querySelector('.add-form-button');
 const comment = document.querySelector('.comment');
 const boxComments = document.querySelector('.comments');
@@ -9,7 +11,7 @@ const boxCommentsTexts = boxComments.querySelectorAll('.comment');
 const formBox = document.querySelector('.add-form');
 let loader = document.createElement('p');
 let now = new Date();
-export {buttonNewComment, comment, boxComments, inputName, textAreaComment, boxCommentsTexts, formBox, now};
+export {app, buttonNewComment, comment, boxComments, inputName, textAreaComment, boxCommentsTexts, formBox, now};
 
 const addLike = (e) => {
   const comment = userComments[e.target.dataset.id];

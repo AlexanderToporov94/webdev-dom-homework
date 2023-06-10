@@ -3,12 +3,16 @@ import { formBox } from "./script.js";
 import { inputName, textAreaComment } from "./script.js";
 import { now } from "./script.js";
 import { loader } from "./script.js";
+import { app } from "./script.js";
 
 let userComments = [];
 export {userComments};
 
+const host = "https://webdev-hw-api.vercel.app/api/v2/alex-toporov/comments";
+const loginHost = "https://wedev-api.sky.pro/api/user/login";
+
 export function gettingCommentFromApi() {
-  return fetch("https://webdev-hw-api.vercel.app/api/v1/alex-toporov/comments", {
+  return fetch(host, {
     method: "GET",
   })
 
@@ -34,11 +38,23 @@ export function gettingCommentFromApi() {
 
 gettingCommentFromApi();
 
+export function fetchLogin(login,password) {
+  return fetch(loginHost, {
+    method: "POST",
+    body: JSON.stringify({
+      login,
+      password,
+    }),
+  }).then((response) => {
+    return response.json();
+  });
+}
+
 export function sendingCommentFromApi() {
   let shortName = inputName.value;
   let shortComment = textAreaComment.value;
 
-  return fetch("https://webdev-hw-api.vercel.app/api/v1/alex-toporov/comments", {
+  return fetch(host, {
     method: "POST",
     body: JSON.stringify({
       id: 1,
