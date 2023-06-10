@@ -8,6 +8,8 @@ import { app } from "./script.js";
 let userComments = [];
 export {userComments};
 
+export let user = [];
+
 const host = "https://webdev-hw-api.vercel.app/api/v2/alex-toporov/comments";
 const loginHost = "https://wedev-api.sky.pro/api/user/login";
 
@@ -50,7 +52,7 @@ export function fetchLogin(login,password) {
   })
   
   .then((responseData) => {
-    console.log(responseData.user.token);
+    return user = responseData.user;
   });
 }
 

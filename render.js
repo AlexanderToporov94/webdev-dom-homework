@@ -4,14 +4,15 @@ import { userComments } from "./api.js";
 import { boxComments } from "./script.js";
 import { renderLogin } from "./renderLogin.js";
 import { app } from "./script.js";
+import { user } from "./api.js";
 
 
-let token = "Bearer ksdfsksdfjfsdjk";
-
+let token = `Bearer `;
+console.log(token);
 token = null;
 
 
-const renderComments = () => {
+const renderComments = (user) => {
 
     const commentHtml = userComments.map((comment,index) => {
         let Iliked = '';

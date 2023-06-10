@@ -1,6 +1,6 @@
 import { fetchLogin } from "./api.js";
 import { renderComments } from "./render.js";
-import { boxComments } from "./script.js";
+import { user } from "./api.js";
 import { app } from "./script.js";
 let autorisationLinkBox = document.createElement('div');
 
@@ -37,9 +37,12 @@ export const renderLogin = () => {
         const login = document.getElementById('login').value;
         const password = document.getElementById('password').value;
         fetchLogin(login,password).then((responseData) => {
-            renderComments(app, responseData.user);
+            renderComments(app, responseData);
+            console.log(user);
         });
         
     });
 };
+
+
 
