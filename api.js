@@ -47,6 +47,10 @@ export function fetchLogin(login,password) {
     }),
   }).then((response) => {
     return response.json();
+  })
+  
+  .then((responseData) => {
+    console.log(responseData.user.token);
   });
 }
 

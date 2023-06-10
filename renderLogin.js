@@ -36,9 +36,10 @@ export const renderLogin = () => {
     authButton.addEventListener('click', () => {
         const login = document.getElementById('login').value;
         const password = document.getElementById('password').value;
-        fetchLogin(login,password).then((response) => {
-            renderComments(app, response.user);
+        fetchLogin(login,password).then((responseData) => {
+            renderComments(app, responseData.user);
         });
+        
     });
 };
 

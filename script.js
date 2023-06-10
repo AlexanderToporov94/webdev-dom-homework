@@ -7,11 +7,11 @@ const comment = document.querySelector('.comment');
 const boxComments = document.querySelector('.comments');
 const inputName = document.querySelector('.add-form-name');
 const textAreaComment = document.querySelector('.add-form-text');
-const boxCommentsTexts = boxComments.querySelectorAll('.comment');
+// const boxCommentsTexts = boxComments.querySelectorAll('.comment');
 const formBox = document.querySelector('.add-form');
 let loader = document.createElement('p');
 let now = new Date();
-export {app, buttonNewComment, comment, boxComments, inputName, textAreaComment, boxCommentsTexts, formBox, now};
+export {app, buttonNewComment, comment, boxComments, inputName, textAreaComment, formBox, now};
 
 const addLike = (e) => {
   const comment = userComments[e.target.dataset.id];
@@ -67,7 +67,6 @@ function addComment() {
 }
 export {loader};
 
-gettingCommentFromApi();
 renderComments();
 
 buttonNewComment.addEventListener('click', function () {
