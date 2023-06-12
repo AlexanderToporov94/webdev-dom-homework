@@ -39,10 +39,9 @@ export const renderLogin = () => {
         const login = document.getElementById('login').value;
         const password = document.getElementById('password').value;
         fetchLogin(login,password).then((responseData) => {
-            // renderComments(app, responseData);
             let newToken = `Bearer ${user.token} `;
             token = newToken;
-            renderComments();
+            renderComments(app, responseData);
         });
     });
 };

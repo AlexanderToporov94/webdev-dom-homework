@@ -97,7 +97,7 @@ const renderComments = () => {
         app.appendChild(addForm);
     };
 
-    initLikeClick();
+    // initLikeClick();
     // answerComment();
 }
 
