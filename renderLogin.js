@@ -2,7 +2,8 @@ import { fetchLogin } from "./api.js";
 import { renderComments } from "./render.js";
 import { user } from "./api.js";
 import { app } from "./script.js";
-let autorisationLinkBox = document.createElement('div');
+
+export let token = '';
 
 export const renderLogin = () => {
     const auth = `
@@ -19,6 +20,7 @@ export const renderLogin = () => {
             class="add-form-name"
             placeholder="Введите пароль"
             id="password"
+            style="margin-top: 20px"
         />
 
         <button id="auth-button" class="auth-button add-form-button">
@@ -37,12 +39,15 @@ export const renderLogin = () => {
         const login = document.getElementById('login').value;
         const password = document.getElementById('password').value;
         fetchLogin(login,password).then((responseData) => {
-            renderComments(app, responseData);
-            console.log(user);
+            // renderComments(app, responseData);
+            let newToken = `Bearer ${user.token} `;
+            token = newToken;
+            renderComments();
         });
-        
     });
 };
+
+
 
 
 

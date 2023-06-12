@@ -48,7 +48,11 @@ export function fetchLogin(login,password) {
       password,
     }),
   }).then((response) => {
-    return response.json();
+    if (response.status === 400) {
+      alert('Неверный логин или пароль');
+    } else {
+      return response.json();
+    }
   })
   
   .then((responseData) => {

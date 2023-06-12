@@ -70,7 +70,6 @@ export {loader};
 renderComments();
 
 buttonNewComment.addEventListener('click', function () {
-  let oldComments = boxComments.innerHTML;
 
   if (inputName.value === '') {
     inputName.classList.add('error');
