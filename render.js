@@ -95,11 +95,10 @@ const renderComments = () => {
         app.innerHTML = commentHtml;
         addForm.innerHTML = addFormHtml;
         app.appendChild(addForm);
-        const buttonNewComment = document.querySelector('.add-form-button');
     };
 
     initLikeClick();
-    answerComment();
+    // answerComment();
 }
 
 export {renderComments};

@@ -37,6 +37,24 @@ const initLikeClick = () => {
 }
 export {initLikeClick};
 
+function addComment() {
+  const container = document.querySelector('.container');
+  formBox.classList.add('hidden');
+  loader.className = "loader";
+  loader.textContent = 'Комментарии загружаются...';
+  container.appendChild(loader);
+
+  gettingCommentFromApi();
+  sendingCommentFromApi();
+  renderComments();
+  clickButtoNewComment();
+  answerComment();
+  inputName.value = '';
+  textAreaComment.value = '';
+}
+export {loader};
+
+renderComments();
 
 const answerComment = () => {
   const boxCommentsTexts = document.querySelectorAll('.comment');
@@ -50,37 +68,21 @@ const answerComment = () => {
 }
 export {answerComment};
 
+function clickButtoNewComment () {
+  buttonNewComment.addEventListener('click', function () {
 
-function addComment() {
-  const container = document.querySelector('.container');
-  formBox.classList.add('hidden');
-  loader.className = "loader";
-  loader.textContent = 'Комментарии загружаются...';
-  container.appendChild(loader);
-
-  gettingCommentFromApi();
-  sendingCommentFromApi();
-  renderComments();
-  answerComment();
-  inputName.value = '';
-  textAreaComment.value = '';
+    if (inputName.value === '') {
+      inputName.classList.add('error');
+      return;
+    } if (textAreaComment.value === '') {
+      textAreaComment.classList.add('error');
+      return;
+    } else {
+      gettingCommentFromApi();
+      addComment();
+      inputName.classList.remove('error');
+      textAreaComment.classList.remove('error');
+    }
+  });
 }
-export {loader};
 
-renderComments();
-
-buttonNewComment.addEventListener('click', function () {
-
-  if (inputName.value === '') {
-    inputName.classList.add('error');
-    return;
-  } if (textAreaComment.value === '') {
-    textAreaComment.classList.add('error');
-    return;
-  } else {
-    gettingCommentFromApi();
-    addComment();
-    inputName.classList.remove('error');
-    textAreaComment.classList.remove('error');
-  }
-});
