@@ -7,7 +7,7 @@ const comment = document.querySelector('.comment');
 const boxComments = document.querySelector('.comments');
 const inputName = document.querySelector('.add-form-name');
 const textAreaComment = document.querySelector('.add-form-text');
-const boxCommentsTexts = boxComments.querySelectorAll('.comment');
+// const boxCommentsTexts = boxComments.querySelectorAll('.comment');
 const formBox = document.querySelector('.add-form');
 let loader = document.createElement('p');
 let now = new Date();
@@ -53,7 +53,6 @@ function addComment() {
 }
 export {loader};
 
-renderComments();
 
 const answerComment = () => {
   const boxCommentsTexts = document.querySelectorAll('.comment');
@@ -86,4 +85,5 @@ function clickButtoNewComment () {
 }
 
 clickButtoNewComment();
+
 
