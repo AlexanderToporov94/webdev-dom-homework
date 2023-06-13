@@ -2,6 +2,8 @@ import {gettingCommentFromApi, userComments, sendingCommentFromApi} from "./api.
 import { renderComments } from "./render.js";
 import { renderLogin } from "./renderLogin.js";
 const app = document.querySelector('.container');
+gettingCommentFromApi();
+
 const buttonNewComment = document.querySelector('.add-form-button');
 const comment = document.querySelector('.comment');
 const boxComments = document.querySelector('.comments');
@@ -66,7 +68,7 @@ const answerComment = () => {
 }
 export {answerComment};
 
-function clickButtoNewComment () {
+export function clickButtoNewComment () {
   buttonNewComment.addEventListener('click', function () {
 
     if (inputName.value === '') {
@@ -84,6 +86,6 @@ function clickButtoNewComment () {
   });
 }
 
-clickButtoNewComment();
+
 
 

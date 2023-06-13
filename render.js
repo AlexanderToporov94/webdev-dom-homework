@@ -1,7 +1,7 @@
 import { comment, initLikeClick } from "./script.js";
 import { answerComment } from "./script.js";
 import { userComments } from "./api.js";
-import { boxComments } from "./script.js";
+import { clickButtoNewComment } from "./script.js";
 import { renderLogin } from "./renderLogin.js";
 import { app } from "./script.js";
 import { token } from "./renderLogin.js";
@@ -95,6 +95,13 @@ const renderComments = () => {
         app.innerHTML = commentHtml;
         addForm.innerHTML = addFormHtml;
         app.appendChild(addForm);
+
+        const buttonNewComment = document.querySelector('.add-form-button');
+        const inputName = document.querySelector('.add-form-name');
+        const textAreaComment = document.querySelector('.add-form-text');
+
+        clickButtoNewComment(buttonNewComment, inputName, textAreaComment);
+
     };
 
     initLikeClick();
