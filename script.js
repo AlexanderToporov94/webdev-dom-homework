@@ -2,8 +2,6 @@ import {gettingCommentFromApi, userComments, sendingCommentFromApi} from "./api.
 import { renderComments } from "./render.js";
 import { renderLogin } from "./renderLogin.js";
 const app = document.querySelector('.container');
-gettingCommentFromApi();
-
 const buttonNewComment = document.querySelector('.add-form-button');
 const comment = document.querySelector('.comment');
 const boxComments = document.querySelector('.comments');
@@ -40,6 +38,9 @@ const initLikeClick = () => {
 export {initLikeClick};
 
 function addComment() {
+  const inputName = document.querySelector('.add-form-name');
+  const textAreaComment = document.querySelector('.add-form-text');
+  const formBox = document.querySelector('.add-form');
   const container = document.querySelector('.container');
   formBox.classList.add('hidden');
   loader.className = "loader";
@@ -69,6 +70,11 @@ const answerComment = () => {
 export {answerComment};
 
 export function clickButtoNewComment () {
+  const buttonNewComment = document.querySelector('.add-form-button');
+  const inputName = document.querySelector('.add-form-name');
+  const textAreaComment = document.querySelector('.add-form-text');
+
+
   buttonNewComment.addEventListener('click', function () {
 
     if (inputName.value === '') {

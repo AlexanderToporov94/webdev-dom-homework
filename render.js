@@ -53,7 +53,7 @@ const renderComments = () => {
             let Iliked = '';
             (comment.Iliked) ? Iliked = '-active-like' : Iliked = '';
             return `
-            <li class="comment">
+            <li class="comment" style="margin-top: 20px">
                 <div class="comment-header">
                     <div class="comment-user-name">${comment.name}</div>
                     <div class="comment-date">${comment.date}</div>
@@ -96,11 +96,11 @@ const renderComments = () => {
         addForm.innerHTML = addFormHtml;
         app.appendChild(addForm);
 
-        const buttonNewComment = document.querySelector('.add-form-button');
+        
         const inputName = document.querySelector('.add-form-name');
         const textAreaComment = document.querySelector('.add-form-text');
 
-        clickButtoNewComment(buttonNewComment, inputName, textAreaComment);
+        clickButtoNewComment(inputName, textAreaComment);
 
     };
 

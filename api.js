@@ -1,4 +1,5 @@
 import { renderComments } from "./render.js";
+import { token } from "./renderLogin.js";
 import { formBox } from "./script.js";
 import { inputName, textAreaComment } from "./script.js";
 import { now } from "./script.js";
@@ -61,6 +62,9 @@ export function fetchLogin(login,password) {
 }
 
 export function sendingCommentFromApi() {
+  const inputName = document.querySelector('.add-form-name');
+  const textAreaComment = document.querySelector('.add-form-text');
+  const formBox = document.querySelector('.add-form');
   let shortName = inputName.value;
   let shortComment = textAreaComment.value;
 
@@ -77,8 +81,10 @@ export function sendingCommentFromApi() {
       name: inputName.value
       .replaceAll('<', '&lt;')
       .replaceAll('<', '&gt;'),
-      forceError: false, 
-    })
+    }),
+    headers: {
+      Authorization: token, 
+    },
   })
 
     .then((response) => {
