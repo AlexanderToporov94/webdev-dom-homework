@@ -27,7 +27,7 @@ export function gettingCommentFromApi() {
     const appComments = responseData.comments.map((comment) => {
       return {
         name: comment.author.name,
-        date: format(comment.date, "YYYY-MM-DD hh.mm.ss"),
+        date: format(new Date(comment.date), "yyyy-MM-dd hh.mm.ss"),
         text: comment.text,
         likes: comment.likes,
         isLiked: false,
@@ -72,7 +72,7 @@ export function sendingCommentFromApi() {
     method: "POST",
     body: JSON.stringify({
       id: 1,
-      date: `${format(now, "YYYY-MM-DD hh.mm.ss")}`,
+      date: `${format(new Date(now), "yyyy-MM-dd hh.mm.ss")}`,
       likes: 0,
       isLiked: false,
       text: `${textAreaComment.value
