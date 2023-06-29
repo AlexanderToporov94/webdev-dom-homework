@@ -1,14 +1,21 @@
 import { renderComments } from "./render.js";
+import { token } from "./renderLogin.js";
 import { formBox } from "./script.js";
 import { inputName, textAreaComment } from "./script.js";
 import { now } from "./script.js";
 import { loader } from "./script.js";
+import { app } from "./script.js";
 
 let userComments = [];
 export {userComments};
 
-export const gettingCommentFromApi = () => {
-  return fetch("https://webdev-hw-api.vercel.app/api/v1/alex-toporov/comments", {
+export let user = [];
+
+const host = "https://webdev-hw-api.vercel.app/api/v2/alex-toporov/comments";
+const loginHost = "https://wedev-api.sky.pro/api/user/login";
+
+export function gettingCommentFromApi() {
+  return fetch(host, {
     method: "GET",
   })
 
@@ -34,11 +41,34 @@ export const gettingCommentFromApi = () => {
 
 gettingCommentFromApi();
 
+export function fetchLogin(login,password) {
+  return fetch(loginHost, {
+    method: "POST",
+    body: JSON.stringify({
+      login,
+      password,
+    }),
+  }).then((response) => {
+    if (response.status === 400) {
+      alert('Неверный логин или пароль');
+    } else {
+      return response.json();
+    }
+  })
+  
+  .then((responseData) => {
+    return user = responseData.user;
+  });
+}
+
 export function sendingCommentFromApi() {
+  const inputName = document.querySelector('.add-form-name');
+  const textAreaComment = document.querySelector('.add-form-text');
+  const formBox = document.querySelector('.add-form');
   let shortName = inputName.value;
   let shortComment = textAreaComment.value;
 
-  return fetch("https://webdev-hw-api.vercel.app/api/v1/alex-toporov/comments", {
+  return fetch(host, {
     method: "POST",
     body: JSON.stringify({
       id: 1,
@@ -51,8 +81,10 @@ export function sendingCommentFromApi() {
       name: inputName.value
       .replaceAll('<', '&lt;')
       .replaceAll('<', '&gt;'),
-      forceError: false, 
-    })
+    }),
+    headers: {
+      Authorization: token, 
+    },
   })
 
     .then((response) => {
