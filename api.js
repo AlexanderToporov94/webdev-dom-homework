@@ -4,7 +4,7 @@ import { formBox } from "./script.js";
 import { inputName, textAreaComment } from "./script.js";
 import { now } from "./script.js";
 import { loader } from "./script.js";
-import { app } from "./script.js";
+import { format } from "date-fns";
 
 let userComments = [];
 export {userComments};
@@ -27,7 +27,7 @@ export function gettingCommentFromApi() {
     const appComments = responseData.comments.map((comment) => {
       return {
         name: comment.author.name,
-        date: new Date(comment.date).toLocaleString().slice(0,-3),
+        date: format(comment.date, "YYYY-MM-DD hh.mm.ss"),
         text: comment.text,
         likes: comment.likes,
         isLiked: false,
@@ -72,7 +72,7 @@ export function sendingCommentFromApi() {
     method: "POST",
     body: JSON.stringify({
       id: 1,
-      date: `${now.toLocaleString().slice(0,-3)}`,
+      date: `${format(now, "YYYY-MM-DD hh.mm.ss")}`,
       likes: 0,
       isLiked: false,
       text: `${textAreaComment.value
