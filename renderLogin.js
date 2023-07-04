@@ -42,6 +42,7 @@ export const renderLogin = () => {
             let newToken = `Bearer ${user.token} `;
             token = newToken;
             renderComments(app, responseData);
+            console.log(user);
         });
     });
 };

@@ -5,6 +5,7 @@ import { clickButtoNewComment } from "./script.js";
 import { renderLogin } from "./renderLogin.js";
 import { app } from "./script.js";
 import { token } from "./renderLogin.js";
+import { user } from "./api.js";
 
 
 const renderComments = () => {
@@ -96,10 +97,9 @@ const renderComments = () => {
         addForm.innerHTML = addFormHtml;
         app.appendChild(addForm);
 
-        
         const inputName = document.querySelector('.add-form-name');
         const textAreaComment = document.querySelector('.add-form-text');
-
+        
         clickButtoNewComment(inputName, textAreaComment);
 
     };
